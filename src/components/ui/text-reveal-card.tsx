@@ -4,6 +4,11 @@ import { motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
 import { cn } from "@/lib/utils";
 
+interface MouseEvent {
+  preventDefault: () => void;
+  clientX: number;
+}
+
 export const TextRevealCard = ({
   text,
   revealText,
@@ -16,7 +21,7 @@ export const TextRevealCard = ({
   className?: string;
 }) => {
   const [widthPercentage, setWidthPercentage] = useState(0);
-  const cardRef = useRef<HTMLDivElement | any>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [left, setLeft] = useState(0);
   const [localWidth, setLocalWidth] = useState(0);
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -30,7 +35,7 @@ export const TextRevealCard = ({
     }
   }, []);
 
-  function mouseMoveHandler(event: any) {
+  function mouseMoveHandler(event: MouseEvent) {
     event.preventDefault();
 
     const { clientX } = event;
@@ -44,9 +49,11 @@ export const TextRevealCard = ({
     setIsMouseOver(false);
     setWidthPercentage(0);
   }
+
   function mouseEnterHandler() {
     setIsMouseOver(true);
   }
+
   function touchMoveHandler(event: React.TouchEvent<HTMLDivElement>) {
     event.preventDefault();
     const clientX = event.touches[0]!.clientX;

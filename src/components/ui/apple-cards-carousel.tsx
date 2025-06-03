@@ -14,7 +14,7 @@ import {
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 interface CarouselProps {
@@ -42,7 +42,6 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const controls = useAnimationControls();
 
   const checkScrollability = useCallback(() => {
     if (carouselRef.current) {
@@ -155,11 +154,17 @@ export const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
   const controls = useAnimationControls();
-
-  // Add hover animation controls
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleClose = useCallback(() => {
+    controls.start("closed");
+    setTimeout(() => {
+      setOpen(false);
+      onCardClose(index);
+    }, 300);
+  }, [controls, onCardClose, index]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -176,21 +181,13 @@ export const Card = ({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [open, handleClose]);
 
-  useOutsideClick(containerRef as React.RefObject<HTMLDivElement>, () => handleClose());
+  useOutsideClick(containerRef as React.RefObject<HTMLDivElement>, handleClose);
 
   const handleOpen = () => {
     setOpen(true);
     controls.start("open");
-  };
-
-  const handleClose = () => {
-    controls.start("closed");
-    setTimeout(() => {
-      setOpen(false);
-      onCardClose(index);
-    }, 300);
   };
 
   return (
@@ -327,16 +324,17 @@ export const BlurImage = ({
   src: string;
   className?: string;
   alt: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const [isLoading, setLoading] = useState(true);
   return (
-    <img
+    <Image
       src={src}
       alt={alt}
-      loading="lazy"
+      fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       className={cn(
-        "h-full w-full transition duration-300",
+        "object-cover transition duration-300",
         isLoading ? "blur-sm" : "blur-0",
         className
       )}

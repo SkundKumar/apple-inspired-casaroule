@@ -2,10 +2,10 @@
 
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { TextRevealCard } from "@/components/ui/text-reveal-card";
-import { Modal } from "@/components/ui/modal";
 import { useState, useCallback, useMemo, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import Image from "next/image";
 
 type SalaryRange = "20-40 LPA" | "10-20 LPA" | "5-10 LPA" | "3-5 LPA";
 
@@ -49,18 +49,6 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
   const y = useTransform(scrollYProgress, [0, 0.2], [0, 100]);
-
-  const handleCardClose = useCallback((index: number) => {
-    setSelectedCard(index);
-  }, []);
-
-  const getCurrentCard = useCallback(() => {
-    const range = salaryRanges[selectedRange];
-    if (!range || !range[selectedCard]) {
-      return defaultCard;
-    }
-    return range[selectedCard];
-  }, [selectedRange, selectedCard]);
 
   const salaryRanges = useMemo(() => ({
     "20-40 LPA": [
@@ -508,7 +496,7 @@ export default function Home() {
       <div className="relative mx-auto max-w-7xl px-4 py-20">
         <div className="space-y-20">
           {Object.entries(salaryRanges).map(([range, cards], sectionIndex) => {
-            const sectionRef = useRef(null);
+            const sectionRef = useRef<HTMLDivElement>(null);
             const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
             return (

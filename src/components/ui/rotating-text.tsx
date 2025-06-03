@@ -118,8 +118,8 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
     }, [texts, currentTextIndex, splitBy]);
 
     const getStaggerDelay = useCallback(
-      (index: number, totalChars: number): number => {
-        const total = totalChars;
+      (index: number, totalElements: number): number => {
+        const total = totalElements;
         if (staggerFrom === "first") return index * staggerDuration;
         if (staggerFrom === "last")
           return (total - 1 - index) * staggerDuration;
@@ -229,6 +229,9 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
               const previousCharsCount = array
                 .slice(0, wordIndex)
                 .reduce((sum, word) => sum + word.characters.length, 0);
+              const totalCharactersInText = array.reduce(
+                (sum, word) => sum + word.characters.length, 0
+              );
               return (
                 <span
                   key={wordIndex}
@@ -244,11 +247,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
                         ...transition,
                         delay: getStaggerDelay(
                           previousCharsCount + charIndex,
-                          array.reduce(
-                            (sum, word) => sum + word.characters.length, [
-                              0
-                            ]
-                          )
+                          totalCharactersInText
                         ),
                       }}
                       className={cn("inline-block", elementLevelClassName)}

@@ -43,6 +43,7 @@ const defaultCard: CardContent = {
 export default function Home() {
   const [selectedCard, setSelectedCard] = useState(0);
   const [selectedRange, setSelectedRange] = useState<SalaryRange>("20-40 LPA");
+  const [isTextRevealHovered, setIsTextRevealHovered] = useState(false);
   const { scrollYProgress } = useScroll();
 
   // Add scroll-based animations
@@ -474,22 +475,115 @@ export default function Home() {
         style={{ opacity, scale, y }}
         className="relative min-h-[80vh] flex items-center justify-center overflow-hidden px-4"
       >
-        <TextRevealCard
-          text="You know the business"
-          revealText="We know the chemistry"
-          className="text-center will-change-transform w-full max-w-4xl mx-auto"
+        <motion.div
+          whileHover={{
+            scale: 1.02,
+            borderColor: "rgba(255, 255, 255, 0.3)",
+          }}
+          transition={{ duration: 0.3 }}
+          className="rounded-lg w-full max-w-6xl relative"
+          onMouseEnter={() => setIsTextRevealHovered(true)}
+          onMouseLeave={() => setIsTextRevealHovered(false)}
         >
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-            className="mx-auto max-w-2xl mt-8"
+          <TextRevealCard
+            text="You know the business"
+            revealText="We know the chemistry"
+            className="text-center will-change-transform w-full mx-auto"
           >
-            <p className="text-xl font-light leading-relaxed text-neutral-300">
-              Helped 20+ founders and 20+ candidates find their right match
-            </p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              className="mx-auto max-w-2xl mt-4"
+            >
+              <div className="grid grid-cols-2 gap-2 mb-6 mx-auto max-w-sm">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="text-center p-1.5 rounded-2xl"
+                >
+                  <div className="flex flex-col items-center">
+                    <motion.div
+                      initial={{ scale: 0.5 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      className="text-5xl font-limelight font-bold mb-2 text-white drop-shadow-glow"
+                    >
+                      20+
+                    </motion.div>
+                    <div className="text-base text-neutral-400 font-light tracking-wide">
+                      Successful Candidates
+                    </div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="text-center p-1.5 rounded-2xl"
+                >
+                  <div className="flex flex-col items-center">
+                    <motion.div
+                      initial={{ scale: 0.5 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="text-5xl font-limelight font-bold mb-2 text-white drop-shadow-glow"
+                    >
+                      20+
+                    </motion.div>
+                    <div className="text-base text-neutral-400 font-light tracking-wide">
+                      Satisfied Founders
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+              <p className="text-lg font-light leading-relaxed text-neutral-300">
+                Connecting exceptional talent with innovative companies
+              </p>
+            </motion.div>
+          </TextRevealCard>
+          {/* Interaction Hint */}
+          <motion.div
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: isTextRevealHovered ? 0 : 1, x: isTextRevealHovered ? 10 : 0 }}
+            transition={{ duration: 0.3, delay: isTextRevealHovered ? 0 : 0.5 }}
+            className="absolute right-32 bottom-20 flex flex-col items-center space-y-1 text-neutral-300 pointer-events-none z-10"
+          >
+            <div className="h-3 w-3 rounded-full border border-neutral-400 bg-transparent animate-pulse"></div>
+            <motion.p
+              className="text-lg font-gochi-hand"
+            >
+              click me
+            </motion.p>
           </motion.div>
-        </TextRevealCard>
+        </motion.div>
+        {/* Scroll Down Indicator */}
+        <motion.div
+          initial={{ y: 0 }}
+          animate={{ y: [0, 15, 0] }}
+          transition={{
+            duration: 1.8,
+            ease: "easeInOut",
+            repeat: Infinity,
+          }}
+          className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-white/70"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-12 w-10"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 19V5m0 14l-4-4m4 4l4-4"
+            />
+          </svg>
+        </motion.div>
       </motion.div>
 
       {/* Salary Range Sections */}
@@ -533,7 +627,7 @@ export default function Home() {
                         {cards.length} Success Stories
                       </motion.p>
                     </motion.div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5">
                       {cards.map((_, index) => (
                         <motion.button
                           key={index}

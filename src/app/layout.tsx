@@ -14,6 +14,12 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
+const gochiHand = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-gochi-hand",
+});
+
 export const metadata: Metadata = {
   title: "Success Stories",
   description: "Success stories of our candidates and founders",
@@ -25,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${gochiHand.variable}`}>
       <body className="font-sans">
         {children}
       </body>

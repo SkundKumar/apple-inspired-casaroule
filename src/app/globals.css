@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gochi-hand-regular {
+  font-family: "Gochi Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 
 :root {
   --radius: 0.625rem;
@@ -35,7 +44,7 @@
   --sidebar-accent: oklch(0.968 0.007 247.896);
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
 .dark {
@@ -77,5 +86,11 @@
   * { /* Removed universal selector rule */ }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .drop-shadow-glow {
+    text-shadow: 0 0 2px rgba(128, 0, 128, 0.7), 0 0 4px rgba(128, 0, 128, 0.5), 0 0 6px rgba(128, 0, 128, 0.3);
   }
 }

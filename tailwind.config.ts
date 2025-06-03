@@ -11,6 +11,8 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)'],
         display: ['var(--font-playfair)'],
+        limelight: ['Limelight', 'cursive'],
+        'gochi-hand': ['Gochi Hand', 'cursive'],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

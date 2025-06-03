@@ -1,11 +1,13 @@
 "use client";
 
-import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+import { Carousel, Card as CarouselCard } from "@/components/ui/apple-cards-carousel";
 import { TextRevealCard } from "@/components/ui/text-reveal-card";
+import RotatingText from "@/components/ui/rotating-text";
 import { useState, useCallback, useMemo, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 type SalaryRange = "20-40 LPA" | "10-20 LPA" | "5-10 LPA" | "3-5 LPA";
 
@@ -54,68 +56,30 @@ export default function Home() {
   const salaryRanges = useMemo(() => ({
     "20-40 LPA": [
       {
-        src: "https://images.unsplash.com/photo-1560250097-0b93528c311a",
+        src: "https://cdn.techkareer.com/success-stories/manan.jpeg",
         title: "Manan Adhikari",
         category: "Product Designer (Contract)",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png",
-        companyName: "Google",
+        companyLogo: "https://cdn.techkareer.com/success-stories/Luppa.jpeg",
+        companyName: "Luppa",
         content: (
           <div className="space-y-6">
-            {/* Header */}
-            <div className="relative h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-              <div className="absolute inset-0 bg-black/50" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="flex items-center gap-4">
-                  <div className="h-16 w-16 rounded-xl bg-white p-2 flex items-center justify-center">
-                    <img 
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" 
-                      alt="Google" 
-                      className="h-12 w-12 object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold text-white">Google</h3>
-                    <p className="text-base text-neutral-300">Product Designer</p>
-                  </div>
-                </div>
-              </div>
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-neutral-200">Experience</h3>
+              <p className="text-neutral-400">4.0 YOE, Ex Silver, HackerRank, Innovacer, and more.</p>
             </div>
-
-            {/* Content */}
-            <div className="p-6 space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-black/50">
-                  <h4 className="text-sm font-medium text-neutral-400">Experience</h4>
-                  <p className="text-xl font-semibold text-white mt-1">4 Years</p>
-                </div>
-                <div className="p-4 rounded-xl bg-black/50">
-                  <h4 className="text-sm font-medium text-neutral-400">Role</h4>
-                  <p className="text-xl font-semibold text-white mt-1">Product Designer</p>
-                </div>
+            <div className="flex items-center justify-between pt-4 border-t border-neutral-800">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
+                <span className="text-sm font-semibold text-neutral-200">20-40 LPA</span>
               </div>
-
-              <div className="space-y-2">
-                <h4 className="text-sm font-medium text-neutral-400">About</h4>
-                <p className="text-lg leading-relaxed text-neutral-300">
-                  4.0 YOE, Ex Silver, HackerRank, Innovacer, and more.
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between pt-4 border-t border-neutral-800">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-                  <span className="text-sm font-semibold text-neutral-200">20-40 LPA</span>
-                </div>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  LinkedIn Profile
-                </a>
-              </div>
+              <a
+                href="https://linkedin.com/in/mananadhikari"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                LinkedIn Profile
+              </a>
             </div>
           </div>
         ),
@@ -123,7 +87,7 @@ export default function Home() {
     ],
     "10-20 LPA": [
       {
-        src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+        src: "https://cdn.techkareer.com/success-stories/Debabrata.jpeg",
         title: "Debabrata Mondal",
         category: "AI Engineer (Full-Time)",
         content: (
@@ -136,7 +100,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/0xdebabrata/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -147,7 +111,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+        src: "https://cdn.techkareer.com/success-stories/Royal.jpeg",
         title: "Royal Sanga",
         category: "AI Engineer (Full-Time)",
         content: (
@@ -160,7 +124,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/royal-sanga-267655191"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -171,7 +135,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+        src: "https://cdn.techkareer.com/success-stories/Tushar.jpeg",
         title: "Tushar Verma",
         category: "Software Engineer (Full-Time)",
         content: (
@@ -184,7 +148,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/tushar-verma-developer"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -195,7 +159,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+        src: "https://cdn.techkareer.com/success-stories/Marvel.jpeg",
         title: "Marvel John",
         category: "QA Engineer (Full-Time)",
         content: (
@@ -208,7 +172,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/marveljohn"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -219,7 +183,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d",
+        src: "https://cdn.techkareer.com/success-stories/lavish.jpeg",
         title: "Lavish Goyal",
         category: "Software Engineer (Contract)",
         content: (
@@ -232,7 +196,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/goellavish10/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -243,7 +207,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+        src: "https://cdn.techkareer.com/success-stories/Joshua.jpeg",
         title: "Joshua D'Costa",
         category: "Growth Lead (Full-Time)",
         content: (
@@ -256,7 +220,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/joshua-d-costa/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -269,7 +233,7 @@ export default function Home() {
     ],
     "5-10 LPA": [
       {
-        src: "https://images.unsplash.com/photo-1504257432389-52343af06ae3",
+        src: "https://cdn.techkareer.com/success-stories/akshat.jpeg",
         title: "Akshat Goel",
         category: "Software Engineer (Full-Time)",
         content: (
@@ -282,7 +246,7 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">5-10 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/akshatgoel7/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -293,7 +257,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c",
+        src: "https://cdn.techkareer.com/success-stories/Sahil.jpeg",
         title: "Sahil Zambani",
         category: "Software Engineer (Full-Time)",
         content: (
@@ -306,7 +270,31 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">5-10 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/sahilzambani"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
+            >
+              LinkedIn Profile
+            </a>
+          </div>
+        ),
+      },
+      {
+        src: "https://cdn.techkareer.com/success-stories/manu.jpeg",
+        title: "Manu Goel",
+        category: "Software Engineer (Full-Time)",
+        content: (
+          <div className="space-y-4">
+            <p className="text-lg text-neutral-300">
+              1.0 YOE, Launched his own Outlook extension to speed up reviewing emails and drafting new ones. Had good work experience, worked remotely for an AI startup where he built multiple products from scrach and mentored juniors.
+            </p>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
+              <span className="text-sm font-semibold text-neutral-200">5-10 LPA</span>
+            </div>
+            <a
+              href="https://www.linkedin.com/in/manu-goel-7899781a0"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
@@ -319,31 +307,7 @@ export default function Home() {
     ],
     "3-5 LPA": [
       {
-        src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
-        title: "Manu Goel",
-        category: "Software Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              1.0 YOE, Launched his own Outlook extension to speed up reviewing emails and drafting new ones. Had good work experience, worked remotely for an AI startup where he built multiple products from scrach and mentored juniors.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
-      },
-      {
-        src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+        src: "https://cdn.techkareer.com/success-stories/jignesh.jpeg",
         title: "Jignesh Sharma",
         category: "Software Engineer (Full-time)",
         content: (
@@ -356,9 +320,9 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
+              href="https://linkedin.com/in/jignesh-sharma-a6243b234"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
             >
               LinkedIn Profile
@@ -367,7 +331,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+        src: "https://cdn.techkareer.com/success-stories/prakher.jpeg",
         title: "Prakhar Shukla",
         category: "Software Engineer (Internship)",
         content: (
@@ -380,18 +344,18 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
+              href="https://linkedin.com/in/iamprakharshukla"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-          >
+            >
               LinkedIn Profile
-          </a>
-        </div>
+            </a>
+          </div>
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1560250097-0b93528c311a",
+        src: "https://cdn.techkareer.com/success-stories/saket.jpeg",
         title: "Saket Sarin",
         category: "Software Engineer (Internship)",
         content: (
@@ -404,9 +368,9 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
+              href="https://linkedin.com/in/saketsarin"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
             >
               LinkedIn Profile
@@ -415,7 +379,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+        src: "https://cdn.techkareer.com/success-stories/utkarsh.jpeg",
         title: "Utkarsh Utkarsh",
         category: "Software Engineer (Internship)",
         content: (
@@ -428,9 +392,9 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
+              href="https://linkedin.com/in/utkarsh575"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
             >
               LinkedIn Profile
@@ -439,7 +403,7 @@ export default function Home() {
         ),
       },
       {
-        src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+        src: "https://cdn.techkareer.com/success-stories/sagar.jpeg",
         title: "Sagar Pant",
         category: "3D Designer (Freelance)",
         content: (
@@ -452,9 +416,9 @@ export default function Home() {
               <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
             </div>
             <a
-              href="https://linkedin.com"
-          target="_blank"
-          rel="noopener noreferrer"
+              href="https://linkedin.com/in/dokutaiyo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
             >
               LinkedIn Profile
@@ -478,9 +442,9 @@ export default function Home() {
         <motion.div
           whileHover={{
             scale: 1.02,
-            borderColor: "rgba(255, 255, 255, 0.3)",
+            borderColor: "rgba(59, 130, 246, 0.7)",
           }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.8 }}
           className="rounded-lg w-full max-w-6xl relative"
           onMouseEnter={() => setIsTextRevealHovered(true)}
           onMouseLeave={() => setIsTextRevealHovered(false)}
@@ -496,49 +460,47 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
               className="mx-auto max-w-2xl mt-4"
             >
-              <div className="grid grid-cols-2 gap-2 mb-6 mx-auto max-w-sm">
+              {/* Combined Statistics and Rotating Text */}
+              <div className="flex items-center justify-center gap-4 mb-6">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="text-center p-1.5 rounded-2xl"
+                  className="text-center"
                 >
-                  <div className="flex flex-col items-center">
-                    <motion.div
-                      initial={{ scale: 0.5 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.4 }}
-                      className="text-5xl font-limelight font-bold mb-2 text-white drop-shadow-glow"
-                    >
-                      20+
-                    </motion.div>
-                    <div className="text-base text-neutral-400 font-light tracking-wide">
-                      Successful Candidates
-                    </div>
-                  </div>
+                   <motion.div
+                    initial={{ scale: 0.5 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="text-5xl font-limelight font-bold text-white drop-shadow-glow inline-block mr-2"
+                  >
+                    20+
+                  </motion.div>
                 </motion.div>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="text-center p-1.5 rounded-2xl"
+                  className="px-2 sm:px-2 md:px-3 bg-zinc-800  text-black py-0.5 sm:py-1 md:py-2 justify-center rounded-lg overflow-hidden"
                 >
-                  <div className="flex flex-col items-center">
-                    <motion.div
-                      initial={{ scale: 0.5 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.5, delay: 0.5 }}
-                      className="text-5xl font-limelight font-bold mb-2 text-white drop-shadow-glow"
-                    >
-                      20+
-                    </motion.div>
-                    <div className="text-base text-neutral-400 font-light tracking-wide">
-                      Satisfied Founders
-                    </div>
-                  </div>
+                   <RotatingText
+                    texts={["Successful Candidates", "Satisfied Founders"]}
+                    auto={true}
+                    rotationInterval={2000}
+                    transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    exit={{ y: "-120%" }}
+                    staggerFrom={"last"}
+                    staggerDuration={0.025}
+                    mainClassName="inline-flex items-center h-auto"
+                    splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                    elementLevelClassName="text-5xl font-display font-bold text-white"
+                    splitBy="words"
+                  />
                 </motion.div>
               </div>
-              <p className="text-lg font-light leading-relaxed text-neutral-300">
+              <p className="text-lg font-light leading-relaxed text-neutral-300 text-center">
                 Connecting exceptional talent with innovative companies
               </p>
             </motion.div>
@@ -600,7 +562,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: sectionIndex * 0.2 }}
-                className="relative mb-16 p-8 rounded-3xl border border-neutral-800/30 hover:border-neutral-700/50 transition-colors duration-300"
+                className="relative mb-16 p-8 rounded-3xl border border-neutral-800/30 hover:border-neutral-700/50 transition-colors duration-500"
               >
                 <div className="relative">
                   <div className="flex items-center justify-between mb-8">
@@ -661,8 +623,13 @@ export default function Home() {
                         ease: [0.4, 0, 0.2, 1],
                       }}
                     >
-                      <Card
-                        card={card}
+                      <CarouselCard
+                        card={{
+                          src: card.src,
+                          title: card.title,
+                          category: card.category,
+                          content: card.content,
+                        }}
                         index={index}
                         layout={selectedRange === range && selectedCard === index}
                       />

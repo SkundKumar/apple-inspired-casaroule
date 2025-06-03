@@ -304,11 +304,13 @@ export const Card = ({
           transition={{ duration: 0.3 }}
           className="absolute inset-0 z-10"
         >
-          <BlurImage
-            src={card.src}
-            alt={card.title}
-            className="h-full w-full object-cover"
-          />
+          <div className="relative h-full w-full">
+            <BlurImage
+              src={card.src}
+              alt={card.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </motion.div>
       </motion.button>
     </>

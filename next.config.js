@@ -13,6 +13,7 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    domains: ['cdn.techkareer.com'],
   },
 };
 

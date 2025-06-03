@@ -548,7 +548,7 @@ export default function Home() {
             initial={{ opacity: 1, x: 0 }}
             animate={{ opacity: isTextRevealHovered ? 0 : 1, x: isTextRevealHovered ? 10 : 0 }}
             transition={{ duration: 0.3, delay: isTextRevealHovered ? 0 : 0.5 }}
-            className="absolute right-32 bottom-20 flex flex-col items-center space-y-1 text-neutral-300 pointer-events-none z-10"
+            className="absolute right-4 bottom-4 flex flex-col items-center space-y-1 text-neutral-300 pointer-events-none z-10 md:right-8 md:bottom-8 lg:right-32 lg:bottom-20"
           >
             <div className="h-3 w-3 rounded-full border border-neutral-400 bg-transparent animate-pulse"></div>
             <motion.p

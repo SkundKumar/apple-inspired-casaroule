@@ -245,9 +245,8 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
                         delay: getStaggerDelay(
                           previousCharsCount + charIndex,
                           array.reduce(
-                            (sum, word) => sum + word.characters.length, [
-                              0
-                            ]
+                            (sum, word) => sum + word.characters.length,
+                            0
                           )
                         ),
                       }}

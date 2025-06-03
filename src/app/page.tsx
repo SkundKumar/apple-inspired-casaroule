@@ -503,44 +503,57 @@ export default function Home() {
               <motion.div
                 ref={sectionRef}
                 key={range}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.1 * sectionIndex,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-                className="space-y-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: sectionIndex * 0.2 }}
+                className="relative mb-16 p-8 rounded-3xl border border-neutral-800/30 hover:border-neutral-700/50 transition-colors duration-300"
               >
-                <motion.div 
-                  className="flex items-center justify-between"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                  transition={{ delay: 0.2 + 0.1 * sectionIndex }}
-                >
-                  <h2 className="text-3xl font-bold text-white md:text-4xl">
-                    {range} Range
-                  </h2>
-                  <div className="flex gap-2">
-                    {cards.map((_, index) => (
-                      <motion.button
-                        key={index}
-                        onClick={() => {
-                          setSelectedRange(range as SalaryRange);
-                          setSelectedCard(index);
-                        }}
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.9 }}
-                        className={cn(
-                          "h-2 w-2 rounded-full transition-all duration-300",
-                          selectedRange === range && selectedCard === index
-                            ? "w-8 bg-white"
-                            : "bg-white/50 hover:bg-white/75"
-                        )}
-                      />
-                    ))}
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-8">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      transition={{ duration: 0.5, delay: sectionIndex * 0.2 + 0.1 }}
+                      className="space-y-2"
+                    >
+                      <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        transition={{ duration: 0.5, delay: sectionIndex * 0.2 + 0.2 }}
+                        className="text-4xl font-display font-bold text-white"
+                      >
+                        {range}
+                      </motion.h2>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                        transition={{ duration: 0.5, delay: sectionIndex * 0.2 + 0.3 }}
+                        className="text-lg text-neutral-400 font-light tracking-wide"
+                      >
+                        {cards.length} Success Stories
+                      </motion.p>
+                    </motion.div>
+                    <div className="flex gap-2">
+                      {cards.map((_, index) => (
+                        <motion.button
+                          key={index}
+                          onClick={() => {
+                            setSelectedRange(range as SalaryRange);
+                            setSelectedCard(index);
+                          }}
+                          whileHover={{ scale: 1.2 }}
+                          whileTap={{ scale: 0.9 }}
+                          className={cn(
+                            "h-2 w-2 rounded-full transition-all duration-300",
+                            selectedRange === range && selectedCard === index
+                              ? "w-8 bg-white"
+                              : "bg-white/50 hover:bg-white/75"
+                          )}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </motion.div>
+                </div>
 
                 <Carousel
                   items={cards.map((card, index) => (

@@ -74,9 +74,7 @@
 }
 
 @layer base {
-  * {
-    @apply border outline;
-  }
+  * { /* Removed universal selector rule */ }
   body {
     @apply bg-background text-foreground;
   }

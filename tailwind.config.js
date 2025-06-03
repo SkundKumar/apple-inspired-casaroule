@@ -8,6 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        border: 'var(--border)',
+        ring: 'var(--ring)',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         card: 'var(--card)',
@@ -24,9 +26,7 @@ module.exports = {
         'accent-foreground': 'var(--accent-foreground)',
         destructive: 'var(--destructive)',
         'destructive-foreground': 'var(--destructive-foreground)',
-        border: 'var(--border)',
         input: 'var(--input)',
-        ring: 'var(--ring)',
       },
       borderRadius: {
         lg: 'var(--radius)',

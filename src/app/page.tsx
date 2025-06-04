@@ -426,6 +426,14 @@ export default function Home() {
                         delay: 0.3 + 0.1 * index,
                         ease: [0.4, 0, 0.2, 1],
                       }}
+                      whileHover={{
+                        scale: 1.03,
+                        boxShadow: "0 0 30px #ff69b4",
+                      }}
+                      whileTap={{
+                        scale: 0.78,
+                      }}
+                      className="rounded-3xl"
                     >
                       <CarouselCard
                         card={{

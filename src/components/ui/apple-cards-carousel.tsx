@@ -241,9 +241,9 @@ export const Card = ({
     <PixelTransition
       firstContent={firstContent}
       secondContent={secondContent}
-      gridSize={8}
+      gridSize={15}
       pixelColor="#ffffff"
-      animationStepDuration={0.4}
+      animationStepDuration={0.3}
       className="h-80 md:h-[33rem] w-56 md:w-96"
       style={{
         border: "none",

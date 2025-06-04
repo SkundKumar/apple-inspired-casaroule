@@ -102,7 +102,7 @@ export const TextRevealCard = ({
             style={{
               textShadow: "4px 4px 15px rgba(0,0,0,0.5)",
             }}
-            className="text-base sm:text-[3rem] py-10 font-bold text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-300 text-center px-4"
+            className="text-xl sm:text-[3rem] py-10 font-bold text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-300 text-center px-4"
           >
             {revealText}
           </p>
@@ -113,11 +113,11 @@ export const TextRevealCard = ({
             rotate: `${rotateDeg}deg`,
           }}
           transition={isMouseOver ? { duration: 0 } : { duration: 0.2 }}
-          className="h-40 w-[7px] bg-background absolute z-50 will-change-transform"
+          className="h-40 w-[7px] bg-neutral-700 absolute z-50 will-change-transform [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]"
         ></motion.div>
 
         <div className="overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)] w-full">
-          <p className="text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#5c5c63] text-center px-4">
+          <p className="text-xl sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent bg-[#5c5c63] text-center px-4">
             {text}
           </p>
           <MemoizedStars />

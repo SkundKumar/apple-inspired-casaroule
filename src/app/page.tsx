@@ -240,7 +240,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
         style={{ opacity, scale, y }}
-        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4"
+        className="relative min-h-[100vh] flex items-center justify-center overflow-hidden px-4"
       >
         <motion.div
           whileHover={{
@@ -319,7 +319,7 @@ export default function Home() {
             <motion.p
               className="text-lg font-gochi-hand"
             >
-              click me
+              Swipe me
             </motion.p>
           </motion.div>
         </motion.div>
@@ -428,7 +428,8 @@ export default function Home() {
                       }}
                       whileHover={{
                         scale: 1.03,
-                        boxShadow: "0 0 30px #ff69b4",
+                        boxShadow: "0 0 20px rgba(255, 105, 180, 0.6), 0 0 40px rgba(255, 105, 180, 0.3)",
+                        transition: { boxShadow: { duration: 0.01 } }
                       }}
                       whileTap={{
                         scale: 0.78,

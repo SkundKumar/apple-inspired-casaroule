@@ -233,19 +233,19 @@ export default function Home() {
   }), []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black via-neutral-900 to-black overflow-x-hidden">
+    <main className="min-h-screen bg-[rgb(30,30,30)] overflow-x-hidden">
       {/* Hero Section */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
         style={{ opacity, scale, y }}
-        className="relative min-h-[80vh] flex items-center justify-center overflow-hidden px-4"
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4"
       >
         <motion.div
           whileHover={{
             scale: 1.02,
-            borderColor: "rgba(59, 130, 246, 0.7)",
+            borderColor: "#a7e8e8",
           }}
           transition={{ duration: 0.8 }}
           className="rounded-lg w-full max-w-6xl relative"
@@ -261,7 +261,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              className="mx-auto max-w-2xl mt-4"
+              className="mx-auto max-w-3xl mt-4"
             >
               {/* Combined Statistics and Rotating Text */}
               <div className="flex items-center justify-center gap-4 mb-6">
@@ -284,7 +284,7 @@ export default function Home() {
                    initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="px-2 sm:px-2 md:px-3 bg-zinc-800  text-black py-0.5 sm:py-1 md:py-2 justify-center rounded-lg overflow-hidden"
+                  className="px-2 sm:px-2 md:px-3 bg-indigo-400 text-black py-0.5 sm:py-1 md:py-2 justify-center rounded-lg overflow-hidden"
                 >
                    <RotatingText
                     texts={["Successful Candidates", "Satisfied Founders"]}
@@ -303,7 +303,7 @@ export default function Home() {
                   />
                 </motion.div>
               </div>
-              <p className="text-lg font-light leading-relaxed text-neutral-300 text-center">
+              <p className="text-lg font-light leading-relaxed text-white text-center">
                 Connecting exceptional talent with innovative companies
               </p>
             </motion.div>
@@ -352,6 +352,7 @@ export default function Home() {
       </motion.div>
 
       {/* Salary Range Sections */}
+      
       <div className="relative mx-auto max-w-7xl px-4 py-20">
         <div className="space-y-20">
           {Object.entries(salaryRanges).map(([range, cards], sectionIndex) => {
@@ -365,7 +366,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: sectionIndex * 0.2 }}
-                className="relative mb-16 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-neutral-800 hover:border-neutral-700/50 transition-colors duration-500"
+                className="relative mb-16 backdrop-blur-sm rounded-lg p-4 md:p-6 transition-colors duration-500"
               >
                 <div className="relative">
                   <div className="flex items-center justify-between mb-8">
@@ -379,7 +380,7 @@ export default function Home() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                         transition={{ duration: 0.5, delay: sectionIndex * 0.2 + 0.2 }}
-                        className="text-4xl font-display font-bold text-white"
+                        className="text-4xl font-display font-bold text-indigo-400"
                       >
                         {range}
                       </motion.h2>
@@ -387,7 +388,7 @@ export default function Home() {
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.5, delay: sectionIndex * 0.2 + 0.3 }}
-                        className="text-lg text-neutral-400 font-light tracking-wide"
+                        className="text-lg text-indigo-400/70 font-light tracking-wide"
                       >
                         {cards.length} Success Stories
                       </motion.p>
@@ -467,17 +468,17 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             className="space-y-4 text-center"
           >
-            <p className="text-lg text-neutral-400">
+            <p className="text-lg text-white">
               Ready to start your journey to success?
             </p>
             <motion.button
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
+                boxShadow: "0 0 20px rgba(167, 232, 232, 0.5)"
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              className="rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-8 py-3 text-white transition-all"
+              className="rounded-full bg-gradient-to-tr from-[#a7e8e8] via-[#f3e5f5] to-[#ff69b4] px-8 py-3 text-[rgb(30,30,30)] transition-all"
             >
               Get Started
             </motion.button>

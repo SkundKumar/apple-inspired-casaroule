@@ -233,7 +233,7 @@ export const Card = ({
                 </motion.button>
                 <motion.p
                   layoutId={layout ? `category-${card.title}` : undefined}
-                  className="text-base font-medium text-neutral-200"
+                  className="text-base font-medium text-white"
                 >
                   {card.category}
                 </motion.p>
@@ -265,14 +265,14 @@ export const Card = ({
                   </div>
 
                   {card.bio && (
-                     <p className="text-neutral-300 text-lg leading-relaxed">{card.bio}</p>
+                     <p className="text-white/80 text-lg leading-relaxed">{card.bio}</p>
                   )}
 
                   <div className="flex items-center justify-between pt-4 border-t border-neutral-800">
                     {card.salaryRange && (
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-                        <span className="text-sm font-semibold text-neutral-200">{card.salaryRange}</span>
+                        <span className="text-sm font-medium text-white/70">Salary Range:</span>
+                        <span className="text-sm font-semibold text-white">{card.salaryRange}</span>
                       </div>
                     )}
                     {card.linkedin && (
@@ -300,7 +300,7 @@ export const Card = ({
         className="relative z-10 flex h-80 w-56 flex-col items-start justify-end overflow-hidden rounded-3xl bg-neutral-900 md:h-[40rem] md:w-96"
         whileHover={{
           scale: 1.02,
-          boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+          boxShadow: "0 20px 25px -5px rgba(167, 232, 232, 0.3), 0 10px 10px -5px rgba(255, 105, 180, 0.2)",
           transition: { duration: 0.2 }
         }}
         whileTap={{
@@ -317,21 +317,33 @@ export const Card = ({
         />
         {/* Content Area with Text and Logo (Glassmorphism Style) */}
         <motion.div 
-          className="absolute bottom-0 left-0 right-0 z-40 w-full p-6 flex items-center justify-between gap-4 bg-neutral-800/40 backdrop-blur-sm border-t rounded-2xl border-white/20"
+          className="absolute bottom-0 left-0 right-0 z-40 w-full p-6 flex items-center justify-between gap-4 bg-[rgb(30,30,30)]/40 backdrop-blur-sm border-t rounded-2xl border-[#a7e8e8]/20"
           animate={{
             // Removed: y: isHovered ? -10 : 0,
           }}
           transition={{ duration: 0.2 }}
         >
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-t from-[rgb(30,30,30)]/50 to-transparent"
+            animate={{
+              background: isHovered 
+                ? "linear-gradient(to top right, rgba(167, 232, 232, 0.8), rgba(243, 229, 245, 0.3), rgba(255, 105, 180, 0.4))"
+                : "linear-gradient(to top, rgba(30, 30, 30, 0.5), transparent)"
+            }}
+            transition={{ duration: 0.3 }}
+            style={{
+              boxShadow: isHovered ? "0 0 20px rgba(167, 232, 232, 0.3)" : "none"
+            }}
+          />
 
           {/* Text Container (Category and Title) */}
           <div className="relative z-10 flex flex-col">
             <motion.p
               layoutId={layout ? `category-${card.category}` : undefined}
-              className="text-left font-sans text-sm font-medium text-white md:text-base"
+              className="text-left font-sans text-sm font-medium md:text-base"
               animate={{
+                color: isHovered ? "white" : "white",
                 opacity: isHovered ? 0.8 : 1,
               }}
             >
@@ -339,9 +351,9 @@ export const Card = ({
             </motion.p>
             <motion.p
               layoutId={layout ? `title-${card.title}` : undefined}
-              className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
+              className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] md:text-3xl"
               animate={{
-                // Removed: y: isHovered ? -5 : 0,
+                color: isHovered ? "white" : "white",
               }}
             >
               {card.title}

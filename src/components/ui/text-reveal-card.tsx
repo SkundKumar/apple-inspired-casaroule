@@ -154,37 +154,56 @@ export const TextRevealCardDescription = ({
 };
 
 const Stars = () => {
-  const randomMove = () => Math.random() * 4 - 2;
-  const randomOpacity = () => Math.random();
-  const random = () => Math.random();
+  const [stars, setStars] = useState<Array<{
+    top: number;
+    left: number;
+    opacity: number;
+    duration: number;
+  }>>([]);
+
+  useEffect(() => {
+    const randomMove = () => Math.random() * 4 - 2;
+    const randomOpacity = () => Math.random();
+    const random = () => Math.random();
+
+    const newStars = Array.from({ length: 80 }, () => ({
+      top: random() * 100,
+      left: random() * 100,
+      opacity: randomOpacity(),
+      duration: random() * 10 + 20,
+    }));
+
+    setStars(newStars);
+  }, []);
+
   return (
     <div className="absolute inset-0">
-      {[...Array(80)].map((_, i) => (
+      {stars.map((star, i) => (
         <motion.span
           key={`star-${i}`}
           animate={{
-            top: `calc(${random() * 100}% + ${randomMove()}px)`,
-            left: `calc(${random() * 100}% + ${randomMove()}px)`,
-            opacity: randomOpacity(),
+            top: `calc(${star.top}% + ${Math.random() * 4 - 2}px)`,
+            left: `calc(${star.left}% + ${Math.random() * 4 - 2}px)`,
+            opacity: star.opacity,
             scale: [1, 1.2, 0],
           }}
           transition={{
-            duration: random() * 10 + 20,
+            duration: star.duration,
             repeat: Infinity,
             ease: "linear",
           }}
           style={{
             position: "absolute",
-            top: `${random() * 100}%`,
-            left: `${random() * 100}%`,
-            width: `2px`,
-            height: `2px`,
+            top: `${star.top}%`,
+            left: `${star.left}%`,
+            width: "2px",
+            height: "2px",
             backgroundColor: "white",
             borderRadius: "50%",
             zIndex: 1,
           }}
           className="inline-block"
-        ></motion.span>
+        />
       ))}
     </div>
   );

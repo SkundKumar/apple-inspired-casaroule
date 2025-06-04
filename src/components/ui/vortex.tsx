@@ -195,6 +195,7 @@ export const Vortex = (props: VortexProps) => {
     ctx?: CanvasRenderingContext2D
   ) => {
     if (!isMounted) return;
+    if (typeof window === 'undefined') return;
     
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -241,8 +242,10 @@ export const Vortex = (props: VortexProps) => {
       }
     };
     
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    if (typeof window !== 'undefined') {
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
 
   useEffect(() => {

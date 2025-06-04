@@ -365,7 +365,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: sectionIndex * 0.2 }}
-                className="relative mb-16 p-8 rounded-3xl border border-neutral-800/30 hover:border-neutral-700/50 transition-colors duration-500"
+                className="relative mb-16 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-neutral-800 hover:border-neutral-700/50 transition-colors duration-500"
               >
                 <div className="relative">
                   <div className="flex items-center justify-between mb-8">
@@ -448,7 +448,7 @@ export default function Home() {
             );
           })}
         </div>
-    </div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

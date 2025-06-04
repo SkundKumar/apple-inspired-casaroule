@@ -297,12 +297,15 @@ export const Card = ({
         onClick={handleOpen}
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-neutral-900 md:h-[40rem] md:w-96"
-        whileHover={{ 
+        className="relative z-10 flex h-80 w-56 flex-col items-start justify-end overflow-hidden rounded-3xl bg-neutral-900 md:h-[40rem] md:w-96"
+        whileHover={{
           scale: 1.02,
+          boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
           transition: { duration: 0.2 }
         }}
-        whileTap={{ scale: 0.98 }}
+        whileTap={{
+          scale: 0.98
+        }}
         transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
       >
         <motion.div 
@@ -312,31 +315,54 @@ export const Card = ({
           }}
           transition={{ duration: 0.2 }}
         />
+        {/* Content Area with Text and Logo (Glassmorphism Style) */}
         <motion.div 
-          className="relative z-40 p-8"
+          className="absolute bottom-0 left-0 right-0 z-40 w-full p-6 flex items-center justify-between gap-4 bg-neutral-800/40 backdrop-blur-sm border-t rounded-2xl border-white/20"
           animate={{
-            y: isHovered ? -10 : 0,
+            // Removed: y: isHovered ? -10 : 0,
           }}
           transition={{ duration: 0.2 }}
         >
-          <motion.p
-            layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-left font-sans text-sm font-medium text-white md:text-base"
-            animate={{
-              opacity: isHovered ? 0.8 : 1,
-            }}
-          >
-            {card.category}
-          </motion.p>
-          <motion.p
-            layoutId={layout ? `title-${card.title}` : undefined}
-            className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
-            animate={{
-              y: isHovered ? -5 : 0,
-            }}
-          >
-            {card.title}
-          </motion.p>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+
+          {/* Text Container (Category and Title) */}
+          <div className="relative z-10 flex flex-col">
+            <motion.p
+              layoutId={layout ? `category-${card.category}` : undefined}
+              className="text-left font-sans text-sm font-medium text-white md:text-base"
+              animate={{
+                opacity: isHovered ? 0.8 : 1,
+              }}
+            >
+              {card.category}
+            </motion.p>
+            <motion.p
+              layoutId={layout ? `title-${card.title}` : undefined}
+              className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
+              animate={{
+                // Removed: y: isHovered ? -5 : 0,
+              }}
+            >
+              {card.title}
+            </motion.p>
+          </div>
+
+          {/* Company Logo on Card */}
+          {card.companyLogo && (
+            <motion.div
+              className="flex-shrink-0"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
+              <img
+                src={card.companyLogo}
+                alt={`${card.companyName || 'Company'} Logo`}
+                className="h-12 w-12 object-contain rounded-md bg-white p-1"
+              />
+            </motion.div>
+          )}
         </motion.div>
         <motion.div
           animate={{

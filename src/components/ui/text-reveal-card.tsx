@@ -96,7 +96,7 @@ export const TextRevealCard = ({
                 }
           }
           transition={isMouseOver ? { duration: 0 } : { duration: 0.4 }}
-          className="absolute bg-background z-20 will-change-transform"
+          className="absolute bg-black z-20 will-change-transform"
         >
           <p
             style={{
@@ -113,7 +113,7 @@ export const TextRevealCard = ({
             rotate: `${rotateDeg}deg`,
           }}
           transition={isMouseOver ? { duration: 0 } : { duration: 0.2 }}
-          className="h-40 w-[7px] bg-neutral-700 absolute z-50 will-change-transform [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]"
+          className="h-40 w-[7px] bg-black absolute z-50 will-change-transform [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]"
         ></motion.div>
 
         <div className="overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)] w-full">

@@ -1,7 +1,7 @@
-import { Inter, Playfair_Display } from "next/font/google";
-import { Gochi_Hand } from "next/font/google";
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,6 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${gochiHand.variable}`}>
       <body className="min-h-screen bg-black font-sans">
+        <div className="fixed inset-0 -z-10">
+          
+        </div>
         <main className="relative z-10">
           {children}
         </main>

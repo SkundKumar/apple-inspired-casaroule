@@ -78,8 +78,8 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
   const handleCardClose = useCallback((index: number) => {
     if (carouselRef.current) {
-      const cardWidth = window.innerWidth < 768 ? 230 : 384;
-      const gap = window.innerWidth < 768 ? 4 : 8;
+      const cardWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 230 : 384;
+      const gap = typeof window !== 'undefined' && window.innerWidth < 768 ? 4 : 8;
       const scrollPosition = (cardWidth + gap) * (index + 1);
       carouselRef.current.scrollTo({
         left: scrollPosition,

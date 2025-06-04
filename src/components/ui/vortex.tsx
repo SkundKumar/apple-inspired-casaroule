@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 import { motion } from "framer-motion";
 
@@ -19,6 +19,7 @@ interface VortexProps {
 }
 
 export const Vortex = (props: VortexProps) => {
+  const [isMounted, setIsMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef(null);
   const particleCount = props.particleCount || 700;
@@ -56,6 +57,8 @@ export const Vortex = (props: VortexProps) => {
     (1 - speed) * n1 + speed * n2;
 
   const setup = () => {
+    if (!isMounted) return;
+    
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (canvas && container) {
@@ -98,6 +101,8 @@ export const Vortex = (props: VortexProps) => {
   };
 
   const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+    if (!isMounted) return;
+    
     tick++;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -109,7 +114,7 @@ export const Vortex = (props: VortexProps) => {
     renderGlow(canvas, ctx);
     renderToScreen(canvas, ctx);
 
-    window.requestAnimationFrame(() => draw(canvas, ctx));
+    requestAnimationFrame(() => draw(canvas, ctx));
   };
 
   const drawParticles = (ctx: CanvasRenderingContext2D) => {
@@ -189,10 +194,10 @@ export const Vortex = (props: VortexProps) => {
     canvas: HTMLCanvasElement,
     ctx?: CanvasRenderingContext2D
   ) => {
-    const { innerWidth, innerHeight } = window;
-
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
+    if (!isMounted) return;
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     center[0] = 0.5 * canvas.width;
     center[1] = 0.5 * canvas.height;
@@ -226,15 +231,25 @@ export const Vortex = (props: VortexProps) => {
   };
 
   useEffect(() => {
-    setup();
-    window.addEventListener("resize", () => {
+    setIsMounted(true);
+    
+    const handleResize = () => {
       const canvas = canvasRef.current;
       const ctx = canvas?.getContext("2d");
       if (canvas && ctx) {
         resize(canvas, ctx);
       }
-    });
+    };
+    
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      setup();
+    }
+  }, [isMounted]);
 
   return (
     <div className={cn("relative h-full w-full", props.containerClassName)}>

@@ -261,7 +261,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-              className="mx-auto max-w-3xl mt-4"
+              className="mx-auto max-w-8xl mt-4"
             >
               {/* Combined Statistics and Rotating Text */}
               <div className="flex items-center justify-center gap-4 mb-6">
@@ -275,7 +275,7 @@ export default function Home() {
                     initial={{ scale: 0.5 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="text-5xl font-limelight font-bold text-white drop-shadow-glow inline-block mr-2"
+                    className="md:text-8xl text-6xl font-limelight font-bold text-white drop-shadow-glow inline-block mr-2"
                   >
                     20+
                   </motion.div>
@@ -298,7 +298,7 @@ export default function Home() {
                     staggerDuration={0.025}
                     mainClassName="inline-flex items-center h-auto"
                     splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                    elementLevelClassName="text-5xl font-display font-bold text-white"
+                    elementLevelClassName="md:text-5xl text-3xl md:text-7xl font-display font-bold text-white"
                     splitBy="words"
                   />
                 </motion.div>

@@ -167,7 +167,7 @@ export const Card = ({
         alt={card.title}
         className="h-full w-full object-cover"
       />
-      <div className={`absolute bottom-0 left-0 right-0 z-40 w-full p-6 flex items-center justify-between gap-4 bg-[rgb(30,30,30)]/40 backdrop-blur-sm border-t rounded-2xl border-[#a7e8e8]/20
+      <div className={`absolute bottom-0 left-0 right-0 z-[1] w-full p-6 flex items-center justify-between gap-4 bg-[rgb(30,30,30)]/40 backdrop-blur-sm border-t rounded-2xl border-[#a7e8e8]/20
         ${isHovered ? 'md:hidden' : ''}
         peer-[.pixel-transition-active]:hidden
       `}>
@@ -175,7 +175,7 @@ export const Card = ({
           <p className="text-left font-sans text-sm font-medium md:text-base text-white">
             {card.category}
           </p>
-          <p className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] md:text-3xl text-white">
+          <p className="mt-2 text-left font-sans text-xl font-semibold [text-wrap:balance] md:text-3xl text-white">
             {card.title}
           </p>
         </div>
@@ -213,8 +213,8 @@ export const Card = ({
         <p className="text-white/80 text-lg leading-relaxed mb-6">{card.bio}</p>
       )}
 
-      {/* Salary and LinkedIn section moved here after the bio */}
-      <div className="flex items-center justify-between pt-4 border-t border-neutral-800 mt-6">
+      {/* Salary and LinkedIn section */}
+      <div className="flex items-center justify-between pt-4 border-t border-neutral-800 mt-4">
         {card.salaryRange && (
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-white/70">Salary Range:</span>
@@ -244,7 +244,7 @@ export const Card = ({
       gridSize={8}
       pixelColor="#ffffff"
       animationStepDuration={0.4}
-      className="h-80 md:h-[40rem] w-56 md:w-96"
+      className="h-80 md:h-[33rem] w-56 md:w-96"
       style={{
         border: "none",
         backgroundColor: "transparent",

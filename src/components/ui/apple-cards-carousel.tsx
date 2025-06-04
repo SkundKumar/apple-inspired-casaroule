@@ -27,6 +27,11 @@ type Card = {
   title: string;
   category: string;
   content: React.ReactNode;
+  companyLogo?: string;
+  companyName?: string;
+  bio?: string;
+  linkedin?: string;
+  salaryRange?: string;
 };
 
 export const CarouselContext = createContext<{
@@ -242,9 +247,45 @@ export const Card = ({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="py-10"
+                  className="py-10 space-y-6"
                 >
-                  {card.content}
+                  <div className="flex items-center gap-4">
+                    {card.companyLogo && (
+                      <img
+                        src={card.companyLogo}
+                        alt={`${card.companyName || 'Company'} Logo`}
+                        className="h-16 w-16 object-contain rounded-md bg-white p-2"
+                      />
+                    )}
+                    <div>
+                      {card.companyName && (
+                        <h3 className="text-xl font-semibold text-white">{card.companyName}</h3>
+                      )}
+                    </div>
+                  </div>
+
+                  {card.bio && (
+                     <p className="text-neutral-300 text-lg leading-relaxed">{card.bio}</p>
+                  )}
+
+                  <div className="flex items-center justify-between pt-4 border-t border-neutral-800">
+                    {card.salaryRange && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
+                        <span className="text-sm font-semibold text-neutral-200">{card.salaryRange}</span>
+                      </div>
+                    )}
+                    {card.linkedin && (
+                      <a
+                        href={card.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        LinkedIn Profile
+                      </a>
+                    )}
+                  </div>
                 </motion.div>
               </motion.div>
             </div>

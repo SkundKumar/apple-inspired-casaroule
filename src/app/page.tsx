@@ -15,9 +15,12 @@ interface CardContent {
   src: string;
   title: string;
   category: string;
-  content: React.ReactNode;
+  content: React.ReactNode | null;
   companyLogo?: string;
   companyName?: string;
+  bio?: string;
+  linkedin?: string;
+  salaryRange?: string;
 }
 
 const defaultCard: CardContent = {
@@ -61,28 +64,10 @@ export default function Home() {
         category: "Product Designer (Contract)",
         companyLogo: "https://cdn.techkareer.com/success-stories/Luppa.jpeg",
         companyName: "Luppa",
-        content: (
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-neutral-200">Experience</h3>
-              <p className="text-neutral-400">4.0 YOE, Ex Silver, HackerRank, Innovacer, and more.</p>
-            </div>
-            <div className="flex items-center justify-between pt-4 border-t border-neutral-800">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-                <span className="text-sm font-semibold text-neutral-200">20-40 LPA</span>
-              </div>
-              <a
-                href="https://linkedin.com/in/mananadhikari"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
-              >
-                LinkedIn Profile
-              </a>
-            </div>
-          </div>
-        ),
+        bio: "4.0 YOE, Ex Silver, HackerRank, Innovacer, and more.",
+        linkedin: "https://linkedin.com/in/mananadhikari",
+        salaryRange: "20-40 LPA",
+        content: null,
       },
     ],
     "10-20 LPA": [
@@ -90,145 +75,67 @@ export default function Home() {
         src: "https://cdn.techkareer.com/success-stories/Debabrata.jpeg",
         title: "Debabrata Mondal",
         category: "AI Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              2.0 YOE, Founder of citrus, an open-source vector database. Worked at Dashibase and Pebblely.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/0xdebabrata/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "2.0 YOE, Founder of citrus, an open-source vector database. Worked at Dashibase and Pebblely.",
+        linkedin: "https://www.linkedin.com/in/0xdebabrata/",
+        salaryRange: "10-20 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/rifflix_logo.jpeg",
+        companyName: "Rifflix",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/Royal.jpeg",
         title: "Royal Sanga",
         category: "AI Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              3.0 YOE, Extensive experience in building AI-powered apps
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/royal-sanga-267655191"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "3.0 YOE, Extensive experience in building AI-powered apps",
+        linkedin: "https://linkedin.com/in/royal-sanga-267655191",
+        salaryRange: "10-20 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/rifflix_logo.jpeg",
+        companyName: "Rifflix",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/Tushar.jpeg",
         title: "Tushar Verma",
         category: "Software Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              1.0 YOE, Founder of CrafturaAI (craftura.art) and GupShupAI (gupshap.fun). Ex ChatGPT Writer and Adimis.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/tushar-verma-developer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "1.0 YOE, Founder of CrafturaAI (craftura.art) and GupShupAI (gupshap.fun). Ex ChatGPT Writer and Adimis.",
+        linkedin: "https://linkedin.com/in/tushar-verma-developer",
+        salaryRange: "10-20 LPA",
+        content: null,
+        companyLogo: "https://pub-cb911cae9c3e4c4c887c2f8360e681c7.r2.dev/success-stories/space_harpoon.jpeg",
+        companyName: "Space Harpoon",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/Marvel.jpeg",
         title: "Marvel John",
         category: "QA Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              3.0 YOE, Experienced with Web/iOS/Android testing. At last company, worked on 5+ AI based apps & 15+ hyper-casual games. Worked at Quiet Games (Game publisher), Gameberry Labs (Game Dev company), Indium Software (IT consulting firm), and more.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/marveljohn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "3.0 YOE, Experienced with Web/iOS/Android testing. At last company, worked on 5+ AI based apps & 15+ hyper-casual games. Worked at Quiet Games (Game publisher), Gameberry Labs (Game Dev company), Indium Software (IT consulting firm), and more.",
+        linkedin: "https://linkedin.com/in/marveljohn",
+        salaryRange: "10-20 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/Luppa.jpeg",
+        companyName: "Luppa",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/lavish.jpeg",
         title: "Lavish Goyal",
         category: "Software Engineer (Contract)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              2.0 YOE, Working at a YC startup
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/goellavish10/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "2.0 YOE, Working at a YC startup",
+        linkedin: "https://www.linkedin.com/in/goellavish10/",
+        salaryRange: "10-20 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/funnel_kit.jpeg",
+        companyName: "Funnel Kit",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/Joshua.jpeg",
         title: "Joshua D'Costa",
         category: "Growth Lead (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              4.0 YOE, At last job at Xoxoday, generated over $150k in revenue & $2M pipeline via growth. Ex Unifynd Technologies and Points for Good.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">10-20 LPA</span>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/joshua-d-costa/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "4.0 YOE, At last job at Xoxoday, generated over $150k in revenue & $2M pipeline via growth. Ex Unifynd Technologies and Points for Good.",
+        linkedin: "https://www.linkedin.com/in/joshua-d-costa/",
+        salaryRange: "10-20 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/dodo.jpeg",
+        companyName: "Dodo",
       },
     ],
     "5-10 LPA": [
@@ -236,73 +143,34 @@ export default function Home() {
         src: "https://cdn.techkareer.com/success-stories/akshat.jpeg",
         title: "Akshat Goel",
         category: "Software Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              1.0 YOE, Ex SDE at Procurenet. Reported to the CEO Gurbaksh Chahal, a prominent serial entrepreneur.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">5-10 LPA</span>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/akshatgoel7/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "1.0 YOE, Ex SDE at Procurenet. Reported to the CEO Gurbaksh Chahal, a prominent serial entrepreneur.",
+        linkedin: "https://www.linkedin.com/in/akshatgoel7/",
+        salaryRange: "5-10 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/enpointe.jpeg",
+        companyName: "Enpointe",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/Sahil.jpeg",
         title: "Sahil Zambani",
         category: "Software Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              1.0 YOE, Runs his own frontend dev agency
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">5-10 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/sahilzambani"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "1.0 YOE, Runs his own frontend dev agency",
+        linkedin: "https://linkedin.com/in/sahilzambani",
+        salaryRange: "5-10 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/enpointe.jpeg",
+        companyName: "Enpointe",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/manu.jpeg",
         title: "Manu Goel",
         category: "Software Engineer (Full-Time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              1.0 YOE, Launched his own Outlook extension to speed up reviewing emails and drafting new ones. Had good work experience, worked remotely for an AI startup where he built multiple products from scrach and mentored juniors.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">5-10 LPA</span>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/manu-goel-7899781a0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "1.0 YOE, Launched his own Outlook extension to speed up reviewing emails and drafting new ones. Had good work experience, worked remotely for an AI startup where he built multiple products from scrach and mentored juniors.",
+        linkedin: "https://www.linkedin.com/in/manu-goel-7899781a0",
+        salaryRange: "5-10 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/aeos.jpeg",
+        companyName: "Aeos",
       },
     ],
     "3-5 LPA": [
@@ -310,121 +178,56 @@ export default function Home() {
         src: "https://cdn.techkareer.com/success-stories/jignesh.jpeg",
         title: "Jignesh Sharma",
         category: "Software Engineer (Full-time)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              0.5 YOE, Had PHP specific expertise which the hiring partner (FunnelKit) required
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/jignesh-sharma-a6243b234"
-            target="_blank"
-            rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "0.5 YOE, Had PHP specific expertise which the hiring partner (FunnelKit) required",
+        linkedin: "https://linkedin.com/in/jignesh-sharma-a6243b234",
+        salaryRange: "3-5 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/funnel_kit.jpeg",
+        companyName: "Funnel Kit",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/prakher.jpeg",
         title: "Prakhar Shukla",
         category: "Software Engineer (Internship)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              1.0 YOE, Founder of Andronix (1.7M+ downloads, ranks #1), An app that lets you install linux distros on Android, and Lumoflo (beta) Centralised marketplace with separate domains for customers. All batteries included e-commerce store created for merchants.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/iamprakharshukla"
-            target="_blank"
-            rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-          >
-              LinkedIn Profile
-          </a>
-        </div>
-        ),
+        bio: "1.0 YOE, Founder of Andronix (1.7M+ downloads, ranks #1), An app that lets you install linux distros on Android, and Lumoflo (beta) Centralised marketplace with separate domains for customers. All batteries included e-commerce store created for merchants.",
+        linkedin: "https://linkedin.com/in/iamprakharshukla",
+        salaryRange: "3-5 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/casecraft.jpeg",
+        companyName: "CaseCraft",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/saket.jpeg",
         title: "Saket Sarin",
         category: "Software Engineer (Internship)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              1.0 YOE, Ex SDE at DoWhile (Backed by Sequoia and Nexus Venture Partners), MFSewa, and E33 Productions
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/saketsarin"
-          target="_blank"
-          rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "1.0 YOE, Ex SDE at DoWhile (Backed by Sequoia and Nexus Venture Partners), MFSewa, and E33 Productions",
+        linkedin: "https://linkedin.com/in/saketsarin",
+        salaryRange: "3-5 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/banterai.jpeg",
+        companyName: "BanterAI",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/utkarsh.jpeg",
         title: "Utkarsh Utkarsh",
         category: "Software Engineer (Internship)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              0.5 YOE, Built impressive projects for college hackathons and portfolio. Contributor to GeeksForGeeks articles.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/utkarsh575"
-          target="_blank"
-          rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "0.5 YOE, Built impressive projects for college hackathons and portfolio. Contributor to GeeksForGeeks articles.",
+        linkedin: "https://linkedin.com/in/utkarsh575",
+        salaryRange: "3-5 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/Slashbase.jpeg",
+        companyName: "Slashbase",
       },
       {
         src: "https://cdn.techkareer.com/success-stories/sagar.jpeg",
         title: "Sagar Pant",
         category: "3D Designer (Freelance)",
-        content: (
-          <div className="space-y-4">
-            <p className="text-lg text-neutral-300">
-              2.0 YOE, Worked as an indie 3D generalist and VFX artist at Wrought Studios.
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-neutral-400">Salary Range:</span>
-              <span className="text-sm font-semibold text-neutral-200">3-5 LPA</span>
-            </div>
-            <a
-              href="https://linkedin.com/in/dokutaiyo"
-          target="_blank"
-          rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
-            >
-              LinkedIn Profile
-            </a>
-          </div>
-        ),
+        bio: "2.0 YOE, Worked as an indie 3D generalist and VFX artist at Wrought Studios.",
+        linkedin: "https://linkedin.com/in/dokutaiyo",
+        salaryRange: "3-5 LPA",
+        content: null,
+        companyLogo: "https://cdn.techkareer.com/success-stories/reddygames_logo.jpeg",
+        companyName: "Reddy Games",
       },
     ],
   }), []);
@@ -590,7 +393,7 @@ export default function Home() {
                       </motion.p>
                     </motion.div>
                     <div className="flex gap-1.5">
-                      {cards.map((_, index) => (
+                      {cards.map((card, index) => (
                         <motion.button
                           key={index}
                           onClick={() => {
@@ -629,6 +432,11 @@ export default function Home() {
                           title: card.title,
                           category: card.category,
                           content: card.content,
+                          companyLogo: card.companyLogo,
+                          companyName: card.companyName,
+                          bio: card.bio,
+                          linkedin: card.linkedin,
+                          salaryRange: card.salaryRange,
                         }}
                         index={index}
                         layout={selectedRange === range && selectedCard === index}
